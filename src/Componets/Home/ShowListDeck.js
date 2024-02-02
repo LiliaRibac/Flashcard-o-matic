@@ -7,20 +7,33 @@ export default function ShowListDeck() {
   const history = useHistory();
 
   useEffect(() => {
-    async function fetchDecks() {
-      const response = await listDecks();
-      setDecks(response);
+    const abortController = new AbortController();
+    const signal = abortController.signal;
+
+    async function fetchData() {
+      try {
+        const response = await listDecks(signal);
+        setDecks(response);
+      } catch (error) {
+        console.log('Error fetching decks:', error);
+      }
     }
-    fetchDecks();
+
+    fetchData();
+
+    return () => {
+      abortController.abort();
+    };
   }, []);
 
   function handleDelete({ deckId }) {
     if (
-      window.confirm(`Delete this deck? You will not be able torecover it.`)
+      window.confirm(`Delete this deck? You will not be able to recover it.`)
     ) {
       deleteDeck(deckId);
+      console.log(deleteDeck);
       setDecks((prevDecks) => prevDecks.filter((deck) => deck.id !== deckId));
-      // window.location.reload();
+      window.location.reload();
     } else {
       history.push('/');
     }
@@ -52,7 +65,7 @@ export default function ShowListDeck() {
                   <button
                     type='button'
                     className='btn btn-danger'
-                    onClick={handleDelete}
+                    onClick={() => handleDelete(deck.id)}
                   >
                     <span className='oi oi-trash'></span>
                   </button>
