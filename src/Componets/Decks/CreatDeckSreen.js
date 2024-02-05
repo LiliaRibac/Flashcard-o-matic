@@ -22,9 +22,11 @@ export default function CreatDeckScreen() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log(event);
 
     try {
       const newDeck = await createDeck(deckData);
+      console.log(newDeck);
       history.push(`/decks/${newDeck.id}`);
     } catch (error) {
       console.error('Error creating deck:', error);
@@ -85,17 +87,17 @@ export default function CreatDeckScreen() {
             value={deckData.description}
           />
         </div>
+        <button
+          type='button'
+          className='btn btn-primary mx-2'
+          onClick={() => history.push('/')}
+        >
+          Cancel
+        </button>
+        <button type='submit' className='btn btn-secondary '>
+          Submit
+        </button>
       </form>
-      <button
-        type='button'
-        className='btn btn-primary mx-2'
-        onClick={() => history.push('/')}
-      >
-        Cancel
-      </button>
-      <button type='submit' className='btn btn-secondary '>
-        Submit
-      </button>
     </div>
   );
 }
