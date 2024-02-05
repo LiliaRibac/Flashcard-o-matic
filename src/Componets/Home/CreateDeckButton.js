@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function CreateDeck() {
+export default function CreateDeckButton() {
   return (
     <div className='row'>
       <div className='col-sm-6 mb-3'>

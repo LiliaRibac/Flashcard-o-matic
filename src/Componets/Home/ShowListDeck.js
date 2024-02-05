@@ -26,18 +26,20 @@ export default function ShowListDeck() {
     };
   }, []);
 
-  function handleDelete({ deckId }) {
-    if (
-      window.confirm(`Delete this deck? You will not be able to recover it.`)
-    ) {
-      deleteDeck(deckId);
-      console.log(deleteDeck);
-      setDecks((prevDecks) => prevDecks.filter((deck) => deck.id !== deckId));
+  const handleDelete = async ({ target }) => {
+    const confirmMessage =
+      'Delete this deck?\n\nYou will not be able to recover it.';
+    const confirm = window.confirm(confirmMessage);
+
+    if (confirm) {
+      const id = target.parentNode.value;
+      await deleteDeck(id);
       window.location.reload();
     } else {
       history.push('/');
     }
-  }
+  };
+
   return (
     <div className='row'>
       {decks.map((deck) => (
@@ -63,9 +65,10 @@ export default function ShowListDeck() {
                 </div>
                 <div>
                   <button
+                    value={deck.id}
                     type='button'
                     className='btn btn-danger'
-                    onClick={() => handleDelete(deck.id)}
+                    onClick={handleDelete}
                   >
                     <span className='oi oi-trash'></span>
                   </button>
