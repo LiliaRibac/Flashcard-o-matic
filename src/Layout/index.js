@@ -5,7 +5,7 @@ import { Switch, Route } from 'react-router-dom/cjs/react-router-dom.min';
 import Home from '../Componets/Home/Home';
 import Deck from '../Componets/Deck/Deck';
 import CreatDeckScreen from '../Componets/Decks/CreatDeckSreen';
-
+import AddCard from '../Componets/Cards/AddCard';
 function Layout() {
   return (
     <>
@@ -16,14 +16,17 @@ function Layout() {
           <Route exact path='/'>
             <Home />
           </Route>
-          <Route path='/decks/new'>
+          <Route exact path='/decks/new'>
             <CreatDeckScreen />
           </Route>
-          <Route path='/decks/:deckId'>
+          <Route exact path='/decks/:deckId'>
             <Deck />
           </Route>
+          <Route exact path='/decks/:deckId/cards/new'>
+            <AddCard />
+          </Route>
         </Switch>
-        <NotFound />
+        {/* <NotFound /> */}
       </div>
     </>
   );

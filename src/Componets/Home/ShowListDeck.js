@@ -6,10 +6,10 @@ export default function ShowListDeck() {
   const [decks, setDecks] = useState([]);
   const history = useHistory();
 
-  useEffect(() => {
-    const abortController = new AbortController();
-    const signal = abortController.signal;
+  const abortController = new AbortController();
+  const signal = abortController.signal;
 
+  useEffect(() => {
     async function fetchData() {
       try {
         const response = await listDecks(signal);
@@ -26,17 +26,16 @@ export default function ShowListDeck() {
     };
   }, []);
 
-  const handleDelete = async ({ target }) => {
+  const handleDelete = async (id) => {
     const confirmMessage =
       'Delete this deck?\n\nYou will not be able to recover it.';
     const confirm = window.confirm(confirmMessage);
 
     if (confirm) {
-      const id = target.parentNode.value;
       await deleteDeck(id);
-      window.location.reload();
-    } else {
-      history.push('/');
+      const response = await listDecks(signal);
+      setDecks(response);
+      // window.location.reload();
     }
   };
 
@@ -68,7 +67,7 @@ export default function ShowListDeck() {
                     value={deck.id}
                     type='button'
                     className='btn btn-danger'
-                    onClick={handleDelete}
+                    onClick={() => handleDelete(deck.id)}
                   >
                     <span className='oi oi-trash'></span>
                   </button>

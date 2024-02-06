@@ -6,7 +6,7 @@ import AddCardsDeckButton from './AddCardsDeckButton';
 export default function Deck() {
   const [deck, setDeck] = useState([]);
   const [cards, setCards] = useState([]);
-  const deckId = useParams().deckId;
+  const { deckId } = useParams();
 
   useEffect(() => {
     async function loadDeck() {
@@ -39,24 +39,24 @@ export default function Deck() {
         </nav>
       </div>
 
-      <h3>{deck.name}Name</h3>
+      <h3>{deck.name}</h3>
 
-      <p>{deck.description}description</p>
+      <p>{deck.description}</p>
       <div className='container d-flex px-0'>
-        <Link type='button' class='btn btn-secondary mx-1'>
+        <Link to='#' className='btn btn-secondary mx-1'>
           <span className='oi oi-pencil mr-2'></span>
           Edit
         </Link>
-        <Link type='button' className='btn btn-primary mx-1'>
+        <Link to='#' className='btn btn-primary mx-1'>
           <span className='oi oi-book mr-2'></span>
           Study
         </Link>
 
-        <Link type='button' className='btn btn-primary'>
-          <AddCardsDeckButton deckId={deck.id} />
+        <Link to={`/decks/${deckId}/cards/new`} className='btn btn-primary'>
+          <span>+</span> Add Card
         </Link>
 
-        <Link type='button' class='btn btn-danger ml-auto'>
+        <Link to='#' className='btn btn-danger ml-auto'>
           <span className='oi oi-trash mr-2'></span>
           Danger
         </Link>
@@ -64,33 +64,35 @@ export default function Deck() {
 
       <h2 className='mt-4'>Cards</h2>
       <div className='card-list'>
-        {/* {cards.map((card) => ( */}
-        <div className='card'>
-          <div className='card-body'>
-            <div className='row'>
-              <div className='col'>
-                <h6>Your Question</h6>
-                <p className='card-text'></p>
-              </div>
-              <div className='col'>
-                <h6>Your Answer</h6>
-                <p className='card-text'></p>
-                <div className='d-flex justify-content-end'>
-                  <div className='pr-2'>
-                    <Link
-                      // to={`edit-card/${card.id}`}
-                      className='btn btn-secondary mx-1'
-                    >
-                      Edit
-                    </Link>
-                    <button className='btn btn-danger mx-1'>Delete</button>
+        {cards.map((card) => (
+          <div className='card'>
+            <div className='card-body'>
+              <div className='row'>
+                <div className='col'>
+                  <h6>Your Question</h6>
+                  <p className='card-text'>{card.front}</p>
+                </div>
+                <div className='col'>
+                  <h6>Your Answer</h6>
+
+                  <p className='card-text'>{card.back}</p>
+                  <div className='d-flex justify-content-end'>
+                    <div className='pr-2'>
+                      <Link
+                        to='#'
+                        // to={`edit-card/${card.id}`}
+                        className='btn btn-secondary mx-1'
+                      >
+                        Edit
+                      </Link>
+                      <button className='btn btn-danger mx-1'>Delete</button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        {/* ))} */}
+        ))}
       </div>
     </>
   );
