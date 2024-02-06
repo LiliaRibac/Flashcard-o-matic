@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { readDeck } from '../../utils/api';
+import { readDeck, deleteCard } from '../../utils/api';
 import AddCardsDeckButton from './AddCardsDeckButton';
-
+import CreatDeckScreen from '../Decks/CreatDeckSreen';
 export default function Deck() {
   const [deck, setDeck] = useState([]);
   const [cards, setCards] = useState([]);
@@ -16,6 +16,18 @@ export default function Deck() {
     }
     loadDeck();
   }, [deckId]);
+
+  const handleDelete = async (cardId) => {
+    const confirmMessage =
+      'Delete this deck?\n\nYou will not be able to recover it.';
+    const confirm = window.confirm(confirmMessage);
+
+    if (confirm) {
+      await deleteCard(cardId);
+      // window.location.reload();
+      setCards(cards.filter((card) => card.id !== cardId));
+    }
+  };
 
   return (
     <>
@@ -65,7 +77,7 @@ export default function Deck() {
       <h2 className='mt-4'>Cards</h2>
       <div className='card-list'>
         {cards.map((card) => (
-          <div className='card'>
+          <div className='card' key={card.id}>
             <div className='card-body'>
               <div className='row'>
                 <div className='col'>
@@ -85,7 +97,13 @@ export default function Deck() {
                       >
                         Edit
                       </Link>
-                      <button className='btn btn-danger mx-1'>Delete</button>
+                      <button
+                        onClick={() => handleDelete(card.id)}
+                        className='btn btn-danger mx-1'
+                      >
+                        Delete
+                      </button>
+                      {/* <AddCardsDeckButton /> */}
                     </div>
                   </div>
                 </div>
