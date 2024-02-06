@@ -64,33 +64,33 @@ export default function Deck() {
 
       <h2 className='mt-4'>Cards</h2>
       <div className='card-list'>
-        {cards.map((card) => (
-          <div className='card'>
-            <div className='card-body'>
-              <div className='row'>
-                <div className='col'>
-                  <h6>Your Question</h6>
-                  <p className='card-text'></p>
-                </div>
-                <div className='col'>
-                  <h6>Your Answer</h6>
-                  <p className='card-text'></p>
-                  <div className='d-flex justify-content-end'>
-                    <div className='pr-2'>
-                      <Link
-                        // to={`edit-card/${card.id}`}
-                        className='btn btn-secondary mx-1'
-                      >
-                        Edit
-                      </Link>
-                      <button className='btn btn-danger mx-1'>Delete</button>
-                    </div>
+        {/* {cards.map((card) => ( */}
+        <div className='card'>
+          <div className='card-body'>
+            <div className='row'>
+              <div className='col'>
+                <h6>Your Question</h6>
+                <p className='card-text'></p>
+              </div>
+              <div className='col'>
+                <h6>Your Answer</h6>
+                <p className='card-text'></p>
+                <div className='d-flex justify-content-end'>
+                  <div className='pr-2'>
+                    <Link
+                      // to={`edit-card/${card.id}`}
+                      className='btn btn-secondary mx-1'
+                    >
+                      Edit
+                    </Link>
+                    <button className='btn btn-danger mx-1'>Delete</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        ))}
+        </div>
+        {/* ))} */}
       </div>
     </>
   );
