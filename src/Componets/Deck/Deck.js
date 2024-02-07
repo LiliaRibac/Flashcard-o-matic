@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { readDeck, deleteCard } from '../../utils/api';
-import AddCardsDeckButton from './AddCardsDeckButton';
+// import AddCardsDeckButton from './AddCardsDeckButton';
 import CreatDeckScreen from '../Decks/CreatDeckSreen';
+
 export default function Deck() {
   const [deck, setDeck] = useState([]);
   const [cards, setCards] = useState([]);
-  const { deckId } = useParams();
+  const { deckId, cardId } = useParams();
 
   useEffect(() => {
     async function loadDeck() {
@@ -91,19 +92,18 @@ export default function Deck() {
                   <div className='d-flex justify-content-end'>
                     <div className='pr-2'>
                       <Link
-                        to='#'
-                        // to={`edit-card/${card.id}`}
+                        to={`/decks/${deckId}/cards/${card.id}/edit`}
                         className='btn btn-secondary mx-1'
                       >
                         Edit
                       </Link>
+
                       <button
                         onClick={() => handleDelete(card.id)}
                         className='btn btn-danger mx-1'
                       >
                         Delete
                       </button>
-                      {/* <AddCardsDeckButton /> */}
                     </div>
                   </div>
                 </div>

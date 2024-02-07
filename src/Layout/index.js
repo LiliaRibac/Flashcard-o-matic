@@ -6,6 +6,7 @@ import Home from '../Componets/Home/Home';
 import Deck from '../Componets/Deck/Deck';
 import CreatDeckScreen from '../Componets/Decks/CreatDeckSreen';
 import AddCard from '../Componets/Cards/AddCard';
+import EditCard from '../Componets/Cards/EditCard';
 function Layout() {
   return (
     <>
@@ -24,6 +25,9 @@ function Layout() {
           </Route>
           <Route exact path='/decks/:deckId/cards/new'>
             <AddCard />
+          </Route>
+          <Route exact path='/decks/:deckId/cards/:cardId/edit'>
+            <EditCard />
           </Route>
         </Switch>
         {/* <NotFound /> */}
