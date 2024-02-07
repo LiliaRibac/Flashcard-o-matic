@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { readDeck, deleteCard } from '../../utils/api';
 // import AddCardsDeckButton from './AddCardsDeckButton';
-import CreatDeckScreen from '../Decks/CreatDeckSreen';
+// import CreatDeckScreen from '../Decks/CreatDeckSreen';
 
 export default function Deck() {
   const [deck, setDeck] = useState([]);
@@ -56,7 +56,7 @@ export default function Deck() {
 
       <p>{deck.description}</p>
       <div className='container d-flex px-0'>
-        <Link to='#' className='btn btn-secondary mx-1'>
+        <Link to={`/decks/${deckId}/edit`} className='btn btn-secondary mx-1'>
           <span className='oi oi-pencil mr-2'></span>
           Edit
         </Link>

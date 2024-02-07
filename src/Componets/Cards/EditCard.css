@@ -1,8 +1,8 @@
-.input-scroll-container::-webkit-scrollbar {
-  width: 108px !important; /* Width of the scrollbar */
-}
+/* .input-scroll-container::-webkit-scrollbar {
+  width: 108px !important;
+} */
 
-.input-scroll-container::-webkit-scrollbar-thumb {
-  background-color: #888 !important; /* Color of the scrollbar thumb */
-  border-radius: 4px !important; /* Radius of the scrollbar thumb */
-}
+/* .input-scroll-container::-webkit-scrollbar-thumb {
+  background-color: #888 !important;
+  border-radius: 4px !important;
+} */
