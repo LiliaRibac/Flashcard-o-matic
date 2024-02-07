@@ -46,7 +46,7 @@ export default function Deck() {
               </Link>
             </li>
             <li className='breadcrumb-item active' aria-current='page'>
-              React Router
+              {deck.name}
             </li>
           </ol>
         </nav>
@@ -60,7 +60,7 @@ export default function Deck() {
           <span className='oi oi-pencil mr-2'></span>
           Edit
         </Link>
-        <Link to='#' className='btn btn-primary mx-1'>
+        <Link to={`/decks/${deckId}/study`} className='btn btn-primary mx-1'>
           <span className='oi oi-book mr-2'></span>
           Study
         </Link>
@@ -69,9 +69,8 @@ export default function Deck() {
           <span>+</span> Add Card
         </Link>
 
-        <Link to='#' className='btn btn-danger ml-auto'>
+        <Link to='/' className='btn btn-danger ml-auto'>
           <span className='oi oi-trash mr-2'></span>
-          Danger
         </Link>
       </div>
 
@@ -95,6 +94,7 @@ export default function Deck() {
                         to={`/decks/${deckId}/cards/${card.id}/edit`}
                         className='btn btn-secondary mx-1'
                       >
+                        <span className='oi oi-pencil mr-2'></span>
                         Edit
                       </Link>
 
@@ -102,7 +102,7 @@ export default function Deck() {
                         onClick={() => handleDelete(card.id)}
                         className='btn btn-danger mx-1'
                       >
-                        Delete
+                        <span className='oi oi-trash mr-2'></span>
                       </button>
                     </div>
                   </div>

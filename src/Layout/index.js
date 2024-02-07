@@ -8,6 +8,7 @@ import CreatDeckScreen from '../Componets/Decks/CreatDeckSreen';
 import AddCard from '../Componets/Cards/AddCard';
 import EditCard from '../Componets/Cards/EditCard';
 import EditDeckBtn from '../Componets/Deck/EditDeckBtn';
+import Study from '../Componets/Study/StudyScreen';
 function Layout() {
   return (
     <>
@@ -33,6 +34,9 @@ function Layout() {
           </Route>
           <Route exact path='/decks/:deckId/cards/:cardId/edit'>
             <EditCard />
+          </Route>
+          <Route exact path='/decks/:deckId/study'>
+            <Study />
           </Route>
         </Switch>
         {/* <NotFound /> */}
