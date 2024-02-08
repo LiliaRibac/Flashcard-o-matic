@@ -79,7 +79,7 @@ export default function EditCard() {
           <label htmlFor='front' className='form-label'>
             Front
           </label>
-          <input
+          <textarea
             type='text'
             className='form-control'
             id='front'
@@ -88,7 +88,7 @@ export default function EditCard() {
             required={true}
             onChange={handleChange}
             value={formData.front}
-          />
+          ></textarea>
         </div>
         <div className='mb-3'>
           <label htmlFor='back' className='form-label'>

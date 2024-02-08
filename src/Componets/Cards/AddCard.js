@@ -68,13 +68,13 @@ export default function AddCard() {
           </li>
         </ol>
       </nav>
-      <h3>React Router: Add Card</h3>
+      <h3>{deck.name}: Add Card</h3>
       <form name='create' onSubmit={handleSubmit}>
         <div className='mb-3'>
           <label htmlFor='front' className='form-label'>
             Front
           </label>
-          <input
+          <textarea
             type='text'
             className='form-control'
             id='front'
@@ -83,13 +83,13 @@ export default function AddCard() {
             required={true}
             onChange={handleChange}
             value={cardData.front}
-          />
+          ></textarea>
         </div>
         <div className='mb-3'>
           <label htmlFor='back' className='form-label'>
             Back
           </label>
-          <input
+          <textarea
             className='form-control'
             id='back'
             name='back'
@@ -97,7 +97,7 @@ export default function AddCard() {
             required={true}
             onChange={handleChange}
             value={cardData.back}
-          />
+          ></textarea>
         </div>
         <button
           type='button'
