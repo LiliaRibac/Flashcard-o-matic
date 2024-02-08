@@ -5,6 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 export default function AddCard() {
+  const [deck, setDeck] = useState({});
   const history = useHistory();
   const { deckId } = useParams();
   const initialAddCardState = {
@@ -15,7 +16,7 @@ export default function AddCard() {
   const [cardData, setCardData] = useState({ ...initialAddCardState });
 
   const handleChange = ({ target }) => {
-    // console.log(target.name, target.value);
+    console.log(target.name, target.value);
     setCardData({ ...cardData, [target.name]: target.value });
   };
 
@@ -38,6 +39,14 @@ export default function AddCard() {
     setCardData({ ...initialAddCardState });
   };
 
+  useEffect(() => {
+    async function loadDeck() {
+      const response = await readDeck(deckId);
+      setDeck(response);
+    }
+    loadDeck();
+  }, [deckId]);
+
   return (
     <div>
       <nav aria-label='breadcrumb'>
@@ -52,7 +61,7 @@ export default function AddCard() {
             </Link>
           </li>
           <li className='breadcrumb-item'>
-            <Link to='/'>React Router</Link>
+            <Link to='/'>{deck.name}</Link>
           </li>
           <li className='breadcrumb-item active' aria-current='page'>
             Add Card
