@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
-import { readDeck, deleteCard } from '../../utils/api';
+import { readDeck, deleteCard, deleteDeck } from '../../utils/api';
 // import AddCardsDeckButton from './AddCardsDeckButton';
 // import CreatDeckScreen from '../Decks/CreatDeckSreen';
 
@@ -19,17 +19,41 @@ export default function Deck() {
     loadDeck();
   }, [deckId]);
 
-  const handleDelete = async (cardId) => {
-    const confirmMessage =
-      'Delete this deck?\n\nYou will not be able to recover it.';
+  // const handleDelete = async (cardId) => {
+  //   const confirmMessage =
+  //     'Delete this deck?\n\nYou will not be able to recover it.';
+  //   const confirm = window.confirm(confirmMessage);
+
+  //   if (confirm) {
+  //     await deleteCard(cardId);
+  //     // window.location.reload();
+  //     setCards(cards.filter((card) => card.id !== cardId));
+
+  //     history.push('/');
+  //   }
+  // };
+
+  const handleDelete = async () => {
+    let confirmMessage;
+
+    if (cardId) {
+      confirmMessage =
+        'Delete this card?\n\nYou will not be able to recover it.';
+    } else {
+      confirmMessage =
+        'Delete this deck?\n\nYou will not be able to recover it.';
+    }
+
     const confirm = window.confirm(confirmMessage);
 
     if (confirm) {
-      await deleteCard(cardId);
-      // window.location.reload();
-      setCards(cards.filter((card) => card.id !== cardId));
-
-      history.push('/');
+      if (cardId) {
+        await deleteCard(cardId);
+        setCards(cards.filter((card) => card.id !== cardId));
+      } else {
+        await deleteDeck(deckId);
+        history.push('/');
+      }
     }
   };
 
@@ -72,9 +96,9 @@ export default function Deck() {
           <span>+</span> Add Card
         </Link>
         <Link
-          to='/'
+          to='#'
           className='btn btn-danger ml-auto'
-          onClick={() => handleDelete(cards.id)}
+          onClick={() => handleDelete(deckId)}
         >
           <span className='oi oi-trash mr-2'></span>
           button

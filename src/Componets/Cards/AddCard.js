@@ -15,7 +15,7 @@ export default function AddCard() {
   const [cardData, setCardData] = useState({ ...initialAddCardState });
 
   const handleChange = ({ target }) => {
-    console.log(target.name, target.value);
+    // console.log(target.name, target.value);
     setCardData({ ...cardData, [target.name]: target.value });
   };
 

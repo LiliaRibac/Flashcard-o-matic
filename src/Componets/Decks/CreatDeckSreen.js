@@ -12,14 +12,6 @@ export default function CreatDeckScreen() {
 
   const [deckData, setDeckData] = useState({ ...initialDeckFormState });
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-
-  //   createDeck(deckData)
-  //     .then((newDeck) => history.push(`/decks/${newDeck.id}`))
-  //     .then((error) => console.log(error));
-  // };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(event);
