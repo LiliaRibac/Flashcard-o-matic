@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import { readDeck, deleteCard } from '../../utils/api';
 // import AddCardsDeckButton from './AddCardsDeckButton';
 // import CreatDeckScreen from '../Decks/CreatDeckSreen';
@@ -8,6 +8,7 @@ export default function Deck() {
   const [deck, setDeck] = useState([]);
   const [cards, setCards] = useState([]);
   const { deckId, cardId } = useParams();
+  const history = useHistory();
 
   useEffect(() => {
     async function loadDeck() {
@@ -27,6 +28,8 @@ export default function Deck() {
       await deleteCard(cardId);
       // window.location.reload();
       setCards(cards.filter((card) => card.id !== cardId));
+
+      history.push('/');
     }
   };
 
@@ -37,7 +40,7 @@ export default function Deck() {
         <nav aria-label='breadcrumb'>
           <ol className='breadcrumb' style={{ lineHeight: 'inherit' }}>
             <li className='breadcrumb-item'>
-              <Link to='/'>
+              <Link to={'/decks'}>
                 <span
                   className='oi oi-home mr-1'
                   style={{ color: '#0d6efd' }}
@@ -68,9 +71,13 @@ export default function Deck() {
         <Link to={`/decks/${deckId}/cards/new`} className='btn btn-primary'>
           <span>+</span> Add Card
         </Link>
-
-        <Link to='/' className='btn btn-danger ml-auto'>
+        <Link
+          to='/'
+          className='btn btn-danger ml-auto'
+          onClick={() => handleDelete(cards.id)}
+        >
           <span className='oi oi-trash mr-2'></span>
+          button
         </Link>
       </div>
 
