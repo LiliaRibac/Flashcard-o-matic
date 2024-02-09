@@ -42,17 +42,6 @@ export default function Deck() {
     }
   };
 
-  // function handleDelete() {
-  //   let confirmMessage;
-
-  //   if (cards) {
-  //     confirmMessage =
-  //       'Delete this card?\n\nYou will not be able to recover it.';
-  //   } else {
-  //     confirmMessage =
-  //       'Delete this deck?\n\nYou will not be able to recover it.';
-  //   }
-  // }
   return (
     <>
       <h1>DECK</h1>

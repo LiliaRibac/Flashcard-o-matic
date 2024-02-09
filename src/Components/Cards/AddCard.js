@@ -3,7 +3,7 @@ import { readDeck, createCard } from '../../utils/api';
 import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-
+import CardsForm from './CardsForm';
 // This component allows users to add a new card to a specified deck,
 
 export default function AddCard() {
@@ -76,47 +76,14 @@ export default function AddCard() {
         </ol>
       </nav>
       <h3>{deck.name}: Add Card</h3>
-      <form name='create' onSubmit={handleSubmit}>
-        <div className='mb-3'>
-          <label htmlFor='front' className='form-label'>
-            Front
-          </label>
-          <textarea
-            type='text'
-            className='form-control'
-            id='front'
-            name='front'
-            placeholder='Front side of card'
-            required={true}
-            onChange={handleChange}
-            value={cardData.front}
-          ></textarea>
-        </div>
-        <div className='mb-3'>
-          <label htmlFor='back' className='form-label'>
-            Back
-          </label>
-          <textarea
-            className='form-control'
-            id='back'
-            name='back'
-            placeholder='Back side of card'
-            required={true}
-            onChange={handleChange}
-            value={cardData.back}
-          ></textarea>
-        </div>
-        <button
-          type='button'
-          className='btn btn-primary mx-2'
-          onClick={() => history.push(`/decks/${deckId}`)}
-        >
-          Done
-        </button>
-        <button type='submit' className='btn btn-secondary '>
-          Save
-        </button>
-      </form>
+
+      <CardsForm
+        onSubmit={handleSubmit}
+        onChange={handleChange}
+        cardData={cardData}
+        deckId={deckId}
+        isAdd={true}
+      />
     </div>
   );
 }

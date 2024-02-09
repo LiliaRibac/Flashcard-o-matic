@@ -2,7 +2,7 @@ import React from 'react';
 import { readDeck, readCard, updateCard } from '../../utils/api';
 import { useState, useEffect } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
-
+import CardsForm from './CardsForm';
 // This component allows users to edit an existing card
 export default function EditCard() {
   const { deckId, cardId } = useParams();
@@ -71,48 +71,13 @@ export default function EditCard() {
       </nav>
       <h3>Edit Card</h3>
 
-      <form name='create' onSubmit={handleSubmit}>
-        <div className='mb-3'>
-          <label htmlFor='front' className='form-label'>
-            Front
-          </label>
-          <textarea
-            type='text'
-            className='form-control'
-            id='front'
-            name='front'
-            placeholder='Front side of card'
-            required={true}
-            onChange={handleChange}
-            value={formData.front}
-          ></textarea>
-        </div>
-        <div className='mb-3'>
-          <label htmlFor='back' className='form-label'>
-            Back
-          </label>
-          <textarea
-            className='form-control'
-            id='back'
-            name='back'
-            placeholder='Back side of card'
-            required={true}
-            onChange={handleChange}
-            value={formData.back}
-          ></textarea>
-        </div>
-
-        <button
-          type='button'
-          className='btn btn-primary mx-2'
-          onClick={() => history.push(`/decks/${deckId}`)}
-        >
-          Cancel
-        </button>
-        <button type='submit' className='btn btn-secondary '>
-          Submit
-        </button>
-      </form>
+      <CardsForm
+        onSubmit={handleSubmit}
+        onChange={handleChange}
+        cardData={formData}
+        deckId={deckId}
+        isAdd={false}
+      />
     </>
   );
 }
