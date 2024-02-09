@@ -88,7 +88,7 @@ export default function Deck() {
           className='btn btn-danger ml-auto'
           onClick={() => handleDelete(deckId)}
         >
-          <span className='oi oi-trash mr-2'></span>
+          <span className='oi oi-trash'></span>
         </Link>
       </div>
 
@@ -99,11 +99,11 @@ export default function Deck() {
             <div className='card-body'>
               <div className='row'>
                 <div className='col'>
-                  <h6>Your Question</h6>
+                  <h5>Your Question</h5>
                   <p className='card-text'>{card.front}</p>
                 </div>
                 <div className='col'>
-                  <h6>Your Answer</h6>
+                  <h5>Your Answer</h5>
 
                   <p className='card-text'>{card.back}</p>
                   <div className='d-flex justify-content-end'>
@@ -120,7 +120,7 @@ export default function Deck() {
                         onClick={() => handleDelete(card.id)}
                         className='btn btn-danger mx-1'
                       >
-                        <span className='oi oi-trash mr-2'></span>
+                        <span className='oi oi-trash '></span>
                       </button>
                     </div>
                   </div>
