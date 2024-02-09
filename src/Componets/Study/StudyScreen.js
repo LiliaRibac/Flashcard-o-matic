@@ -51,7 +51,11 @@ export default function StudyScreen() {
 
   if (study.cards.length <= 2) {
     return (
-      <NotEnoughCards deckId={deckId} numberOfCards={study.cards.length} />
+      <NotEnoughCards
+        deckId={deckId}
+        deck={study}
+        numberOfCards={study.cards.length}
+      />
     );
   }
 
@@ -80,7 +84,7 @@ export default function StudyScreen() {
       <div className='card '>
         <div className='card-body'>
           <h5 className='card-title'>
-            Card : {currentIndex + 1} of {study.cards.length}
+            Card {currentIndex + 1} of {study.cards.length}
           </h5>
           <p className='card-text'>
             {flipped

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const NotEnoughCards = ({ deckId, numberOfCards }) => {
+const NotEnoughCards = ({ deckId, numberOfCards, deck }) => {
   return (
     <>
       <nav aria-label='breadcrumb'>
@@ -16,7 +16,7 @@ const NotEnoughCards = ({ deckId, numberOfCards }) => {
             </Link>
           </li>
           <li className='breadcrumb-item'>
-            <Link to='/'>Rendering in React</Link>
+            <Link to='/'>{deck.name}</Link>
           </li>
           <li className='breadcrumb-item active' aria-current='page'>
             Study
