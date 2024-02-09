@@ -24,3 +24,6 @@ Add Card Screen: Allows users to add new flashcards to an existing deck by provi
 
  5. Edit Deck/Card 
   * Provides the ability to modify the content of an existing card within a deck, and clicking "Submit" leads back to the deck page.
+
+
+https://github.com/LiliaRibac/Flashcard-o-matic/assets/43895766/4829c185-cf76-49e3-97a7-35106d159477
