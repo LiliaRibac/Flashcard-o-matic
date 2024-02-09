@@ -52,7 +52,7 @@ export default function Deck() {
         <nav aria-label='breadcrumb'>
           <ol className='breadcrumb' style={{ lineHeight: 'inherit' }}>
             <li className='breadcrumb-item'>
-              <Link to={'/decks'}>
+              <Link to='/'>
                 <span
                   className='oi oi-home mr-1'
                   style={{ color: '#0d6efd' }}
@@ -84,7 +84,7 @@ export default function Deck() {
           <span>+</span> Add Card
         </Link>
         <Link
-          to='#'
+          to='/'
           className='btn btn-danger ml-auto'
           onClick={() => handleDelete(deckId)}
         >
