@@ -23,7 +23,6 @@ export default function Deck() {
   // Function to handle deletion of either a card or a deck based on the user's choice
   const handleDelete = async () => {
     let confirmMessage;
-
     if (cardId) {
       confirmMessage =
         'Delete this card?\n\nYou will not be able to recover it.';
@@ -31,9 +30,7 @@ export default function Deck() {
       confirmMessage =
         'Delete this deck?\n\nYou will not be able to recover it.';
     }
-
     const confirm = window.confirm(confirmMessage);
-
     if (confirm) {
       if (cardId) {
         await deleteCard(cardId);
@@ -45,6 +42,17 @@ export default function Deck() {
     }
   };
 
+  // function handleDelete() {
+  //   let confirmMessage;
+
+  //   if (cards) {
+  //     confirmMessage =
+  //       'Delete this card?\n\nYou will not be able to recover it.';
+  //   } else {
+  //     confirmMessage =
+  //       'Delete this deck?\n\nYou will not be able to recover it.';
+  //   }
+  // }
   return (
     <>
       <h1>DECK</h1>
@@ -117,10 +125,23 @@ export default function Deck() {
                       </Link>
 
                       <button
-                        onClick={() => handleDelete(card.id)}
-                        className='btn btn-danger mx-1'
+                        onClick={async () => {
+                          if (
+                            window.confirm(
+                              'Are you sure you want to delete this card? You will not be able to recover it.'
+                            )
+                          ) {
+                            await deleteCard(card.id);
+                            history.go(0);
+                          } else {
+                            history.go(0);
+                          }
+                        }}
+                        name='deleteCard'
+                        value={card.id}
+                        className='btn btn-danger ml-2'
                       >
-                        <span className='oi oi-trash '></span>
+                        <span className='oi oi-trash'></span>
                       </button>
                     </div>
                   </div>
