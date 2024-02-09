@@ -1,13 +1,9 @@
 import React from 'react';
 import { readDeck, readCard, updateCard } from '../../utils/api';
 import { useState, useEffect } from 'react';
-import {
-  Link,
-  useHistory,
-  useParams,
-} from 'react-router-dom/cjs/react-router-dom.min';
-// import './EditCard.css';
+import { Link, useHistory, useParams } from 'react-router-dom';
 
+// This component allows users to edit an existing card
 export default function EditCard() {
   const { deckId, cardId } = useParams();
   const history = useHistory();
@@ -19,6 +15,8 @@ export default function EditCard() {
   };
   const [formData, setFormData] = useState({ ...initialEditCardState });
 
+  // It fetches the data of the deck and the card being edited using the readDeck and readCard functions,
+  //  when either the deckId or cardId changes.
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -64,7 +62,6 @@ export default function EditCard() {
             </Link>
           </li>
           <li className='breadcrumb-item'>
-            {/* <Link to='/'>React Router</Link> */}
             <Link to={`/decks/${deckId}`}>{deck.name}</Link>
           </li>
           <li className='breadcrumb-item active' aria-current='page'>
@@ -104,16 +101,6 @@ export default function EditCard() {
             value={formData.back}
           ></textarea>
         </div>
-        {/* <div
-          className='input-scroll-container'
-          style={{ height: '300px', overflowY: 'scroll' }}
-        >
-          <input
-            type='text'
-            className='form-control'
-            placeholder='Enter text.dfdf..'
-          />
-        </div> */}
 
         <button
           type='button'

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// This component is used to inform users that there are not enough cards in the deck to study
 const NotEnoughCards = ({ deckId, numberOfCards, deck }) => {
   return (
     <>

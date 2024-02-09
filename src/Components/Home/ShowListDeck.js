@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { listDecks, deleteDeck } from '../../utils/api';
 
 export default function ShowListDeck() {
+  // State Initialization
   const [decks, setDecks] = useState([]);
-  const history = useHistory();
 
   const abortController = new AbortController();
   const signal = abortController.signal;
 
+  // useEffect fetches the list of decks using the listDecks function
   useEffect(() => {
     async function fetchData() {
       try {
@@ -26,6 +27,8 @@ export default function ShowListDeck() {
     };
   }, []);
 
+  // handleDelete function effectively manages the deletion of a deck,
+  //  displays a confirmation message to ensure the user's intent,
   const handleDelete = async (id) => {
     const confirmMessage =
       'Delete this deck?\n\nYou will not be able to recover it.';
@@ -35,7 +38,6 @@ export default function ShowListDeck() {
       await deleteDeck(id);
       const response = await listDecks(signal);
       setDecks(response);
-      // window.location.reload();
     }
   };
 

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import { readDeck, deleteCard, deleteDeck } from '../../utils/api';
-// import AddCardsDeckButton from './AddCardsDeckButton';
-// import CreatDeckScreen from '../Decks/CreatDeckSreen';
 
+//  this component provides a user interface for viewing and managing a deck of flashcards,
+//  including adding, editing, studying, and deleting cards within the deck
 export default function Deck() {
+  // State Initialization
   const [deck, setDeck] = useState([]);
   const [cards, setCards] = useState([]);
   const { deckId, cardId } = useParams();
@@ -19,20 +20,7 @@ export default function Deck() {
     loadDeck();
   }, [deckId]);
 
-  // const handleDelete = async (cardId) => {
-  //   const confirmMessage =
-  //     'Delete this deck?\n\nYou will not be able to recover it.';
-  //   const confirm = window.confirm(confirmMessage);
-
-  //   if (confirm) {
-  //     await deleteCard(cardId);
-  //     // window.location.reload();
-  //     setCards(cards.filter((card) => card.id !== cardId));
-
-  //     history.push('/');
-  //   }
-  // };
-
+  // Function to handle deletion of either a card or a deck based on the user's choice
   const handleDelete = async () => {
     let confirmMessage;
 
@@ -101,7 +89,6 @@ export default function Deck() {
           onClick={() => handleDelete(deckId)}
         >
           <span className='oi oi-trash mr-2'></span>
-          button
         </Link>
       </div>
 

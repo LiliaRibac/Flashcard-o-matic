@@ -3,6 +3,9 @@ import { Link, useHistory, useParams } from 'react-router-dom';
 import { readDeck } from '../../utils/api';
 import NotEnoughCards from './NotEnoughCards';
 
+// Thsi component provides an interface for studying flashcards within a specific deck.
+// It allows users to flip between cards, move to the next card,
+// and navigate back to the home page if desired
 export default function StudyScreen() {
   const { deckId } = useParams();
   const history = useHistory();

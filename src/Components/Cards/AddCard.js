@@ -4,7 +4,11 @@ import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
+// This component allows users to add a new card to a specified deck,
+
 export default function AddCard() {
+  // State Initialization
+
   const [deck, setDeck] = useState({});
   const history = useHistory();
   const { deckId } = useParams();
@@ -15,11 +19,14 @@ export default function AddCard() {
 
   const [cardData, setCardData] = useState({ ...initialAddCardState });
 
+  // Function to handle changes in the input fields of the form.
   const handleChange = ({ target }) => {
     console.log(target.name, target.value);
     setCardData({ ...cardData, [target.name]: target.value });
   };
 
+  // function to handle form submission
+  // create a new card using the createCard function with the deckId and cardData
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -38,7 +45,7 @@ export default function AddCard() {
 
     setCardData({ ...initialAddCardState });
   };
-
+  // Hook that runs after the component is rendered.
   useEffect(() => {
     async function loadDeck() {
       const response = await readDeck(deckId);

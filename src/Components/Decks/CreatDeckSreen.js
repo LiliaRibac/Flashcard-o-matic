@@ -3,7 +3,11 @@ import { createDeck } from '../../utils/api';
 import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
+// This component provides a user interface for creating a new deck
+//  by entering its name and description and submitting the form
+
 export default function CreatDeckScreen() {
+  // Imports and Initialization
   const history = useHistory();
   const initialDeckFormState = {
     name: '',
@@ -12,6 +16,8 @@ export default function CreatDeckScreen() {
 
   const [deckData, setDeckData] = useState({ ...initialDeckFormState });
 
+  // It prevents the default form submission behavior, creates a new deck
+  //and navigates to the newly created deck's page using history.push
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(event);
@@ -25,6 +31,7 @@ export default function CreatDeckScreen() {
     }
   };
 
+  // It updates the deckData state with the new values entered by the user using setDeckData
   const handleChange = ({ target }) => {
     setDeckData({ ...deckData, [target.name]: target.value });
   };

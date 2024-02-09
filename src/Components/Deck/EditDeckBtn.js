@@ -1,12 +1,10 @@
 import React from 'react';
 import { readDeck, updateDeck } from '../../utils/api';
 import { useState, useEffect } from 'react';
-import {
-  Link,
-  useHistory,
-  useParams,
-} from 'react-router-dom/cjs/react-router-dom.min';
+import { Link, useHistory, useParams } from 'react-router-dom/';
 
+// This component provides a user interface for editing the details
+// of a specific deck, including its name and description.
 export default function EditDeckBtn() {
   const { deckId } = useParams();
   const history = useHistory();
@@ -17,6 +15,8 @@ export default function EditDeckBtn() {
 
   const [editDeckData, setEditDeckData] = useState({ ...initialDeckFormState });
 
+  // It fetches the data of the deck,and then sets the editDeckData
+  //  state with the fetched deck data.
   useEffect(() => {
     const loadDeck = async () => {
       try {
@@ -30,12 +30,15 @@ export default function EditDeckBtn() {
     loadDeck();
   }, [deckId]);
 
+  //handleChange changes in the input fields of the form
   const handleChange = (event) => {
     setEditDeckData({
       ...editDeckData,
       [event.target.name]: event.target.value,
     });
   };
+
+  //  handleSubmit it prevents the default form submission behavior, updates the deck
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -45,7 +48,7 @@ export default function EditDeckBtn() {
       console.log('Error updating error', error);
     }
   };
-  // return <div>edit deck</div>;
+
   return (
     <>
       <nav aria-label='breadcrumb'>
@@ -60,7 +63,6 @@ export default function EditDeckBtn() {
             </Link>
           </li>
           <li className='breadcrumb-item'>
-            {/* <Link to='/'>Rendering in React</Link> */}
             <Link to={`/decks/${deckId}`}>{editDeckData.name}</Link>
           </li>
           <li className='breadcrumb-item active' aria-current='page'>
@@ -93,7 +95,7 @@ export default function EditDeckBtn() {
           <textarea
             className='form-control'
             id='description'
-            name='description' // Corrected spelling here
+            name='description'
             placeholder='Enter description'
             required={true}
             onChange={handleChange}
